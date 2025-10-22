@@ -14,17 +14,25 @@ dotenv.config(); // Load environment variables
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173", // frontend URL
-//     credentials: true,
-//   })
-// );
+/* ─────────── Middleware ─────────── */
+
+// Enable CORS for frontend
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true, // allows cookies and authorization headers
+  })
+);
+
+// Handle preflight requests for all routes
+app.options("*", cors());
+
 app.use(express.json()); 
 app.use(morgan("dev")); 
 
 /* ─────────── API Routes ─────────── */
-app.get("/", (_, res) => res.send(" CipherStudio API is running "));
+app.get("/", (_, res) => res.send("CipherStudio API is running"));
 
 app.use("/api/files", fileRoutes);
 app.use("/api/projects", projectRoutes);
@@ -37,8 +45,9 @@ app.use((req, res, next) => {
     .json({ success: false, message: `Not Found – ${req.originalUrl}` });
 });
 
+/* ─────────── Error Handler ─────────── */
 app.use((err, req, res, next) => {
-  console.error(" Server Error:", err.stack);
+  console.error("Server Error:", err.stack);
   res.status(err.statusCode || 500).json({
     success: false,
     message: err.message || "Server Error",
@@ -46,6 +55,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+/* ─────────── Start Server ─────────── */
 app.listen(PORT, () => {
-  console.log(` Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
