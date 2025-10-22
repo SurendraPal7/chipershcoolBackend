@@ -14,15 +14,14 @@ dotenv.config(); // Load environment variables
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-/* ─────────── Middleware ─────────── */
 app.use(
   cors({
     origin: "http://localhost:5173", // frontend URL
     credentials: true,
   })
 );
-app.use(express.json()); // Parse JSON bodies
-app.use(morgan("dev")); // Request logging
+app.use(express.json()); 
+app.use(morgan("dev")); 
 
 /* ─────────── API Routes ─────────── */
 app.get("/", (_, res) => res.send(" CipherStudio API is running "));
