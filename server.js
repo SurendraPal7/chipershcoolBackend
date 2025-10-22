@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import './config/db.js'; 
+
 // Routes
 import fileRoutes from "./routes/fileRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
@@ -16,20 +17,23 @@ const PORT = process.env.PORT || 5000;
 
 /* ─────────── Middleware ─────────── */
 
-// Enable CORS for frontend
+// Enable CORS
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173", // frontend URL
+    origin: process.env.FRONTEND_URL || "http://localhost:5173", // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // allows cookies and authorization headers
+    credentials: true, // allow cookies/authorization headers
   })
 );
 
-// Handle preflight requests for all routes
+// Handle preflight requests
 app.options("*", cors());
 
-app.use(express.json()); 
-app.use(morgan("dev")); 
+// Body parser
+app.use(express.json());
+
+// Logger
+app.use(morgan("dev"));
 
 /* ─────────── API Routes ─────────── */
 app.get("/", (_, res) => res.send("CipherStudio API is running"));
