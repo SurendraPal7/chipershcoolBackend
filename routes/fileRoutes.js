@@ -6,14 +6,14 @@ import {
   updateFile,
   deleteFile,
 } from "../controllers/fileController.js";
-import { protect } from "../middleware/authMiddleware.js";
+// import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 // All file operations are private
-router.post("/", protect, createFile);
-router.get("/:projectId", protect, getFilesByProject);
-router.put("/:id", protect, updateFile);
-router.delete("/:id", protect, deleteFile);
+router.post("/",  createFile);
+router.get("/:projectId",  getFilesByProject);
+router.put("/:id",  updateFile);
+router.delete("/:id",  deleteFile);
 
 export default router;
