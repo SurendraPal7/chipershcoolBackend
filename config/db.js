@@ -6,7 +6,7 @@ const { DB_USER, DB_PASS, DB_NAME } = process.env;
 const encodedUser = encodeURIComponent(DB_USER);
 const encodedPass = encodeURIComponent(DB_PASS);
 
-const MONGODB_URI = `mongodb+srv://${encodedUser}:${encodedPass}@cluster0.ucggsmz.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI = `mongodb+srv://${encodedUser}:${encodedPass}@cluster0.ucggsmz.mongodb.net/$cipherstudio_db?retryWrites=true&w=majority&appName=Cluster0`;
 mongoose.set("strictQuery", false);         
 
 mongoose.connect(MONGODB_URI)
