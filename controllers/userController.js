@@ -1,4 +1,3 @@
-// controllers/userController.js
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
@@ -39,7 +38,7 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
-// ✅ Login User
+//  Login User
 export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -71,7 +70,7 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
-// ✅ Get User Profile (Protected)
+//  Get User Profile (Protected)
 export const getUserProfile = async (req, res, next) => {
   try {
     if (!req.user)

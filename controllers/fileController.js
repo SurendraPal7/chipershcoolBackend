@@ -1,7 +1,5 @@
-// controllers/fileController.js
 import File from "../models/File.js";
 
-// ✅ Create a File or Folder
 export const createFile = async (req, res, next) => {
   try {
     const { projectId, parentId = null, name, type = "file", content = "" } =
@@ -20,7 +18,6 @@ export const createFile = async (req, res, next) => {
   }
 };
 
-// ✅ Get All Files in a Project
 export const getFilesByProject = async (req, res, next) => {
   try {
     const { projectId } = req.params;
@@ -32,7 +29,6 @@ export const getFilesByProject = async (req, res, next) => {
   }
 };
 
-// ✅ Update File
 export const updateFile = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -51,7 +47,6 @@ export const updateFile = async (req, res, next) => {
   }
 };
 
-// ✅ Delete File
 export const deleteFile = async (req, res, next) => {
   try {
     const { id } = req.params;

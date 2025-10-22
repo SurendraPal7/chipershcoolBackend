@@ -1,12 +1,9 @@
-// routes/userRoutes.js
 import express from "express";
 
 const router = express.Router();
 
-// In-memory users array
 let users = [];
 
-// ✅ POST /api/users/register
 router.post("/register", (req, res) => {
   const { name, email, password } = req.body;
 
@@ -23,7 +20,7 @@ router.post("/register", (req, res) => {
     id: users.length + 1,
     name,
     email,
-    password, // storing plain password for simplicity
+    password,
   };
 
   users.push(newUser);
@@ -37,7 +34,6 @@ router.post("/register", (req, res) => {
   });
 });
 
-// ✅ POST /api/users/login (👉 add this route)
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -55,7 +51,7 @@ router.post("/login", (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      token: "fake-jwt-token", // you can later replace this with real JWT
+      token: "fake-jwt-token", 
     },
     message: "Login successful",
   });
