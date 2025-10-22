@@ -7,7 +7,7 @@ const encodedUser = encodeURIComponent(DB_USER);
 const encodedPass = encodeURIComponent(DB_PASS);
 
 const MONGODB_URI = `mongodb+srv://${encodedUser}:${encodedPass}@cluster0.ucggsmz.mongodb.net/cipherstudio_db?retryWrites=true&w=majority&appName=Cluster0`;
-mongoose.set("strictQuery", false);         
+mongoose.set("strictQuery", true);         
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log(' Connected to MongoDB Atlas'))
@@ -16,3 +16,5 @@ mongoose.connect(MONGODB_URI)
     process.exit(1);
   });
 
+
+ 
