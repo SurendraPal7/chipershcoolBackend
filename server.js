@@ -37,7 +37,6 @@ app.use((req, res, next) => {
     .json({ success: false, message: `Not Found – ${req.originalUrl}` });
 });
 
-/* ─────────── Error Handler ─────────── */
 app.use((err, req, res, next) => {
   console.error(" Server Error:", err.stack);
   res.status(err.statusCode || 500).json({
@@ -47,7 +46,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-/* ─────────── Start Server ─────────── */
 app.listen(PORT, () => {
   console.log(` Server running on port ${PORT}`);
   console.log(` Frontend expected at: http://localhost:5173`);
