@@ -1,4 +1,3 @@
-// config/db.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
@@ -11,9 +10,9 @@ const MONGODB_URI = `mongodb+srv://${encodedUser}:${encodedPass}@cluster0.ucggsm
 mongoose.set("strictQuery", false);         
 
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('✅ Connected to MongoDB Atlas'))
+  .then(() => console.log(' Connected to MongoDB Atlas'))
   .catch(err => {
-    console.error('❌ MongoDB connection error:', err.message);
+    console.error(' MongoDB connection error:', err.message);
     process.exit(1);
   });
 
